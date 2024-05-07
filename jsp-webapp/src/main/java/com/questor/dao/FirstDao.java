@@ -1,5 +1,6 @@
 package com.questor.dao;
 
-public class FirstDao {
+import java.sql.Connection;
 
+public class FirstDao {
 }
