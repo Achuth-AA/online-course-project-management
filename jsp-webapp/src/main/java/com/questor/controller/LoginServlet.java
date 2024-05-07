@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import static com.questor.dao.LoginDao.authenticate;
+
 @WebServlet("/login")
 // Replace with your actual authentication logic (e.g., database check, hashing)
 public class LoginServlet extends HttpServlet {
@@ -23,7 +25,7 @@ public class LoginServlet extends HttpServlet {
         boolean isValid = authenticate(username, password);
 
         if (isValid) {
-            HttpSession session = request.getSession(true);
+            HttpSession session = request.getSession();
             session.setAttribute("username", username);
 
             // Redirect to a successful login page or secured resource
@@ -35,9 +37,8 @@ public class LoginServlet extends HttpServlet {
         }
     }
 
+
+
     // Replace this with your actual authentication logic
-    private boolean authenticate(String username, String password) {
-        // Simulate authentication (replace with your database check)
-        return username.equals("admin@123") && password.equals("password");
-    }
+
 }
