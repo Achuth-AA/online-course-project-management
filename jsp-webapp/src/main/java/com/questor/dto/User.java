@@ -1,19 +1,24 @@
 package com.questor.dto;
 
 public class User {
-    private String firstName;
+    private String name;
     private String lastName;
     private String username;
 
     private String email;
     private String phone;
+    private String country;
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCountry() {
+        return country;
     }
 
     public String getLastName() {
@@ -49,12 +54,11 @@ public class User {
     }
 
 
-    public User(String firstName, String lastName, String username, String email, String phone) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public User(String name, String username, String email, String country) {
+        this.name = name;
         this.username = username;
         this.email = email;
-        this.phone = phone;
+        this.country = country;
     }
 }
 

@@ -1,7 +1,6 @@
 package com.questor.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,21 +17,23 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String username = request.getParameter("username");
+        String email = request.getParameter("email");
         String password = request.getParameter("password");
 
         // Implement secure authentication logic here (e.g., database check, hashing)
-        boolean isValid = authenticate(username, password);
+        int userId = authenticate(email, password);
+        System.out.println(userId);
 
-        if (isValid) {
+        if (userId != 0) {
             HttpSession session = request.getSession();
-            session.setAttribute("username", username);
+            session.setAttribute("userId", userId);
+            System.out.println(userId);
 
             // Redirect to a successful login page or secured resource
-            response.sendRedirect("welcome.jsp"); // Replace with your welcome page
+            response.sendRedirect("./views/profile.jsp"); // Replace with your welcome page
         } else {
             request.setAttribute("errorMessage", "Invalid username or password.");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("./views/login.jsp");
             dispatcher.forward(request, response); // Forward to login page with error
         }
     }
@@ -41,4 +42,6 @@ public class LoginServlet extends HttpServlet {
 
     // Replace this with your actual authentication logic
 
+    public static class SaveChangesServlet {
+    }
 }

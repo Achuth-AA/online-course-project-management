@@ -9,22 +9,24 @@ import java.sql.SQLException;
 
 public class LoginDao{
 
-    public static boolean authenticate(String username,String password) {
+    public static int authenticate(String email,String password) {
+        int userId = 0;
         try {
 
             Connection con = FirstDao.getConnection();
-            String query = "Select * from users where username=? and password=?";
+            String query = "Select * from users where email=? and password=?";
             PreparedStatement pst = con.prepareStatement(query);
-            pst.setString(1, username);
+            pst.setString(1, email);
             pst.setString(2, password);
 
             ResultSet rs = pst.executeQuery();
-
-            return rs.next();
+            while(rs.next()) {
+                userId = rs.getInt("userid");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
 
+        return userId;
     }
 }

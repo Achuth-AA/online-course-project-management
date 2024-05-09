@@ -8,7 +8,7 @@ public class FirstDao {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/questor","root","yashu1401");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/questor","root","root");
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }
